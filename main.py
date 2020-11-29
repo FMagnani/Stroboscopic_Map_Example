@@ -16,11 +16,11 @@ import Stroboscopic as Strb
 orbits    = 15       # Number of orbits
 size  = 10000        # Number of iterations
 
-Dt = .5              # Time interval for numerical integration
+Dt = .1              # Time interval for numerical integration
 a = 1                # x coord of equilibrium point
 b = 1                # y coord of equilibrium point
 e = .1               # Amplitude of the periodic perturbation
-k = 2                # Period, in units 'Dt'
+k = 10                # Period, in units 'Dt'
 
 T = k*Dt             # Period
 W = 2*np.pi/T        # Frequence
@@ -29,8 +29,8 @@ invPi = 1/np.pi
 seed = 1             # For random generation of initial orbits' position
 np.random.seed(seed)
 
-xlim = (-5, 5)       # Span of x axis
-ylim = (-5, 5)       # Span of y axis
+xlim = (-3, 3)       # Span of x axis
+ylim = (-3, 3)       # Span of y axis
 
 stroboscopic = 1     # Display stroboscopic map over the complete orbit?
 modular = 1          # Modulate over the period for theta?
@@ -65,12 +65,31 @@ Data = { 'X':X, 'Y':Y, 'th':th, 'Xp':Xp, 'Yp':Yp, 'thp':thp }
 
 #Plotting
 
+# Example for a figure with two 2D plots
 fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(8,8))
 Strb.Plot2D(ax1, Data, Parameters, stroboscopic)
 Strb.Plot2D(ax2, Data, Parameters, (not stroboscopic))
 
+# Example of a 3D figure
 Strb.Plot3D(Data, Parameters, 
             stroboscopic, modular, projection)
+
+# Example of a for cycle for 2D figures. 
+# Each time is needed to apply the map again and update Parameters and Data.
+fig, ax = plt.subplots(nrows=2, ncols=2)
+
+for (e,cell) in [(0,ax[0,0]), (.1,ax[0,1]), (.5,ax[1,0]), (1,ax[1,1])]:
+    Parameters['e'] = e
+    
+    X, Y, th = Strb.Map_theta(Parameters, X,Y,th, modular)
+    
+    ind_p = tuple([np.arange(0,size,k)])
+    Data['Xp'] = X[ind_p]
+    Data['Yp'] = Y[ind_p]
+    Data['thp'] = th[ind_p]
+    
+    Strb.Plot2D(cell, Data, Parameters, stroboscopic)
+
 
 plt.show()
 
