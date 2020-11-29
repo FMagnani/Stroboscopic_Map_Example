@@ -9,7 +9,7 @@ GitHub repo: https://github.com/FMagnani
 
 import numpy as np             # numerical library
 import matplotlib.pylab as plt # plot library
-#import Stroboscopic as Strb
+import Stroboscopic as Strb
 
 ### Main script ###
 
@@ -34,7 +34,8 @@ ylim = (-5, 5)       # Span of y axis
 
 stroboscopic = 1     # Display stroboscopic map over the complete orbit?
 modular = 1          # Modulate over the period for theta?
-projection = 1       # Display projection onto xy plane of 3D orbits?
+projection = 1       # Display projection of the stroboscopic map 
+                     # onto xy plane of 3D orbits?
 
 
 # Parameters and grid initialization
@@ -50,7 +51,7 @@ th[0] = 0
 
 
 # Solution
-# X, Y, th = Strb.map1(X,Y, Modular=modular)
+X, Y, th = Strb.Map_theta(Parameters, X,Y,th, modular)
 
 
 # Stroboscopic map
@@ -59,15 +60,19 @@ Xp = X[ind_p]
 Yp = Y[ind_p]
 thp = th[ind_p]
 
+Data = { 'X':X, 'Y':Y, 'th':th, 'Xp':Xp, 'Yp':Yp, 'thp':thp }
+
 
 #Plotting
 
-Data = { 'X':X, 'Y':Y, 'th':th, 'Xp':Xp, 'Yp':Yp, 'thp':thp }
+fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(8,8))
+Strb.Plot2D(ax1, Data, Parameters, stroboscopic)
+Strb.Plot2D(ax2, Data, Parameters, (not stroboscopic))
 
-# Strb.Plot2D(Data, Parameters, Stroboscopic=stroboscopic)
-# Strb.Plot3D(Data, Parameters, 
-#             Stroboscopic=stroboscopic, Modular=modular, Projection=projection)
+Strb.Plot3D(Data, Parameters, 
+            stroboscopic, modular, projection)
 
+plt.show()
 
 
 
