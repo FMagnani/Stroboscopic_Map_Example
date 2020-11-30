@@ -33,7 +33,7 @@ xlim = (-3, 3)       # Span of x axis
 ylim = (-3, 3)       # Span of y axis
 
 stroboscopic = 1     # Display stroboscopic map over the complete orbit?
-modular = 1          # Modulate over the period for theta?
+modular = 0          # Modulate over the period for theta?
 projection = 1       # Display projection of the stroboscopic map 
                      # onto xy plane of 3D orbits?
 
@@ -51,7 +51,7 @@ th[0] = 0
 
 
 # Solution
-X, Y, th = Strb.Map_theta(Parameters, X,Y,th, modular)
+X, Y, th = Strb.Map_time(Parameters, X,Y,th, modular)
 
 
 # Stroboscopic map
@@ -68,11 +68,21 @@ Data = { 'X':X, 'Y':Y, 'th':th, 'Xp':Xp, 'Yp':Yp, 'thp':thp }
 # Example for a figure with two 2D plots
 fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(8,8))
 Strb.Plot2D(ax1, Data, Parameters, stroboscopic)
-Strb.Plot2D(ax2, Data, Parameters, (not stroboscopic))
+X, Y, th = Strb.Map_theta(Parameters, X,Y,th, modular)
+    
+ind_p = tuple([np.arange(0,size,k)])
+Data['Xp'] = X[ind_p]
+Data['Yp'] = Y[ind_p]
+Data['thp'] = th[ind_p]
+
+Strb.Plot2D(ax2, Data, Parameters, stroboscopic)
+
 
 # Example of a 3D figure
 Strb.Plot3D(Data, Parameters, 
             stroboscopic, modular, projection)
+
+
 
 # Example of a for cycle for 2D figures. 
 # Each time is needed to apply the map again and update Parameters and Data.
