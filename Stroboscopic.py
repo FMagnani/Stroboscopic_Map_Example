@@ -132,10 +132,12 @@ def Plot3D(Data, Pars, Stroboscopic, Modular, Projection):
     fig = plt.figure()
     ax = fig.gca(projection='3d')
 
+    zmax = np.max(Data['th'])
+
     # Axis limits
     ax.set_xlim(xlim)
     ax.set_ylim(ylim)
-    ax.set_zlim(0, mod)
+    ax.set_zlim(0, zmax)
 
     # Axis labels
     fnt =15
