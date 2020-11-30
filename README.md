@@ -19,7 +19,7 @@ in order to have as a final form for the system:
 
 ![equation1](<https://latex.codecogs.com/gif.latex?\frac{\dot{x}}{2\pi}=(a^2-e^{y/\pi})+\epsilon&space;\cos{\theta}>)  
 ![equation1](<https://latex.codecogs.com/gif.latex?\frac{\dot{y}}{2\pi}=(e^{x/\pi}-b^2)>)  
-![equation1](<https://latex.codecogs.com/gif.latex?\dot{\theta}=\frac{\omega}{2\pi}>)  
+![equation1](<https://latex.codecogs.com/gif.latex?\dot{\theta}=\omega>)  
 
 from which the following map is derived:  
 
