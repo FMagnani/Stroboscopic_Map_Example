@@ -46,5 +46,5 @@ The usage is simple:
 The parameters should be self explanatory.  
 Some basic examples are given in the main code itself.  
   
-I did this code for my personal usage in a project for a university course. I didn't have time to refine it too much. I would probably reformulate all the script using some classes, having time to do so. 
-
+## Warning
+I did this code for my personal usage in a project for a university course. I didn't have time to refine it too much. I would probably reformulate all the script using some classes, having time to do so. This said, some bugs are present in the 3D plot, probably regarding the z-axis span. Use carefully the code, maybe just as a reference.
