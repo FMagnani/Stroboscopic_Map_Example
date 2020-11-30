@@ -116,18 +116,7 @@ def Plot3D(Data, Pars, Stroboscopic, Modular, Projection):
     thp = Data['thp']
     xlim = Pars['xlim']
     ylim = Pars['ylim']
-    
-    size = Pars['size']
-    Dt = Pars['Dt']
-    T = Pars['T']
-  
-    # In fact, if mod = size there is no modularity at all, 
-    # since the number of iterations is size itself  
-    if (Modular):
-        mod = 2*np.pi
-    else:
-        mod = 2*np.pi*size*Dt/T
- 
+       
     # 3D figure initialization
     fig = plt.figure()
     ax = fig.gca(projection='3d')
