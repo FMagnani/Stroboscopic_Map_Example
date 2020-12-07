@@ -36,7 +36,7 @@ A different map can be obtained if we don't make the t->theta transformation, th
 
 that's called "Map_time" in the code, since it's defined in the (x,y,t) space.  
   
-The stroboscopic method, in the 3 dimensional framework, consist in sampling the trajectories at intervals equal to the period of the perturbation. The stroboscopic map is the projection of such a sampling onto the xy plane, and this process reduces in fact the dimensionality of the problem by one. The period T is different for the two maps, since it must be computed in terms of the time or of the angle. In any case, setting the period as an integer multiple of the integration time interval, i.e. ![equation1](<https://latex.codecogs.com/gif.latex?T=\Delta&space;t>), the stroboscopic map is just a subset of the complete map, specifically is the subsequence in which we take one point every k.
+The stroboscopic method, in the 3 dimensional framework, consist in sampling the trajectories at intervals equal to the period of the perturbation. The stroboscopic map is the projection of such a sampling onto the xy plane, and this process reduces in fact the dimensionality of the problem by one. The period T is different for the two maps, since it must be computed in terms of the time or of the angle. In any case, setting the period as an integer multiple of the integration time interval, i.e. ![equation1](<https://latex.codecogs.com/gif.latex?T=k\Delta&space;t>), the stroboscopic map is just a subset of the complete map, specifically is the subsequence in which we take one point every k.
 
 ## Software usage
 The main module is meant to be used as a script. So each time:  
