@@ -39,12 +39,12 @@ that's called "Map_time" in the code, since it's defined in the (x,y,t) space.
 The stroboscopic method, in the 3 dimensional framework, consist in sampling the trajectories at intervals equal to the period of the perturbation. The stroboscopic map is the projection of such a sampling onto the xy plane, and this process reduces in fact the dimensionality of the problem by one. The period T is different for the two maps, since it must be computed in terms of the time or of the angle. In any case, setting the period as an integer multiple of the integration time interval, i.e. ![equation1](<https://latex.codecogs.com/gif.latex?T=k\Delta&space;t>), the stroboscopic map is just a subset of the complete map, specifically is the subsequence in which we take one point every k.
 
 ## Software usage
-The main module is meant to be used as a script. So each time:  
-1) Set the parameters  
-2) Apply the map  
-3) Update the data
-4) Plot the results  
-It's possible to automatize the 2D plots with cycles as an example shows in the main module itself, while it has not been tested the same feature for the 3D plot.
+Three directories are present.
+In "Stroboscopic_Map_Script" there is the implementation to be used as a script.
+In "Stroboscopic_Map_Class" the same performance is given in Object Oriented version.
+In "Figures_of_the_project" the scripts needed to replicate the figures employed in the project, together with a pdf version of the project itself, are given.
+
+Further informations are given inside each subdirectory.
 
 ## Warning
-I did this code for my personal usage in a project for a university course. I didn't have time to refine it too much. I would probably reformulate all the script using some classes, having time to do so.  
+I did this code for my personal usage in a project for a university course. The script implementation is a bit messy since I realized it very fast. I personally prefer the class implementation.
