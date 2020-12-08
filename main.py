@@ -23,7 +23,7 @@ e = .1               # Amplitude of the periodic perturbation
 k = 10                # Period, in units 'Dt'
 
 T = k*Dt             # Period
-W = 2*np.pi/T        # Frequence
+W = 2*np.pi/T        # Frequency
 invPi = 1/np.pi
 
 seed = 1             # For random generation of initial orbits' position
@@ -32,10 +32,10 @@ np.random.seed(seed)
 xlim = (-3, 3)       # Span of x axis
 ylim = (-3, 3)       # Span of y axis
 
+# The following variables are boolean
 stroboscopic = 1     # Display stroboscopic map over the complete orbit?
-modular = 0          # Modulate over the period for theta?
-projection = 1       # Display projection of the stroboscopic map 
-                     # onto xy plane of 3D orbits?
+modular = 0          # Modulate the evolution over the period?
+projection = 1       # Display projection of the stroboscopic map onto xy plane of 3D orbits?
 
 
 # Parameters and grid initialization
