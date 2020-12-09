@@ -13,7 +13,7 @@ that is explicitly dependent on time. We can recover an autonomous description a
 ![equation1](<https://latex.codecogs.com/gif.latex?\dot{\theta}=\omega>)
 
 Some further transformations are useful. Noting that for ![equation1](<https://latex.codecogs.com/gif.latex?\epsilon=0>) the system is Hamiltonian, we exploit the coordinate change ![equation1](<https://latex.codecogs.com/gif.latex?x\mapsto&space;log(x)>), ![equation1](<https://latex.codecogs.com/gif.latex?y\mapsto&space;log(y)>) and we then build two different integrators.  
-For the first we rescale all the coordinates as
+For the first we rescale the spatial coordinates as
 ![equation1](<https://latex.codecogs.com/gif.latex?(x,y)\mapsto&space;\frac{(x,y)}{2\pi}>)  
 in order to have as a final form for the system:  
 
@@ -24,14 +24,14 @@ in order to have as a final form for the system:
 from which the following map is derived:  
 
 ![equation1](<https://latex.codecogs.com/gif.latex?x_{n+1}=x_n&space;+2\pi&space;\Delta&space;t(a^2-e^{y_{n+1}/\pi})+\epsilon&space;2\pi&space;\Delta&space;t \cos{\theta_{n}}>)  
-![equation1](<https://latex.codecogs.com/gif.latex?y_{n+1}=(e^{x_n/\pi}-b^2)>)  
+![equation1](<https://latex.codecogs.com/gif.latex?y_{n+1}=y_n&space;+2\pi&space;\Delta&space;t(e^{x_n/\pi}-b^2)>)  
 ![equation1](<https://latex.codecogs.com/gif.latex?\theta_{n+1}=\theta_n&space;+\Delta&space;t&space;\omega=\theta_n&space;+2\pi&space;\frac{\Delta&space;t}{T}>)  
 
 We refer to this integrator as "Map_theta" in the code, since it's defined in the (x,y,theta) space.  
-A different map can be obtained if we don't make the t->theta transformation, the following:  
+A different map can be obtained if we don't make the ![equation1](<https://latex.codecogs.com/gif.latex?\theta&space;(t)=\omega&space;t>) transformation, neither the rescaling of the spatial coordinates, the following:  
 
-![equation1](<https://latex.codecogs.com/gif.latex?x_{n+1}=x_n&space;+2\pi&space;\Delta&space;t(a^2-e^{2y_{n+1}})+\epsilon&space;\Delta&space;t&space;\cos{\omega&space;t_{n}}>)  
-![equation1](<https://latex.codecogs.com/gif.latex?y_{n+1}=(e^{2x_n}-b^2)>)  
+![equation1](<https://latex.codecogs.com/gif.latex?x_{n+1}=x_n&space;+&space;\Delta&space;t(a^2-e^{2y_{n+1}})+\epsilon&space;\Delta&space;t&space;\cos{\omega&space;t_{n}}>)  
+![equation1](<https://latex.codecogs.com/gif.latex?y_{n+1}=y_n&space;+&space;\Delta&space;t(e^{2x_n}-b^2)>)  
 ![equation1](<https://latex.codecogs.com/gif.latex?t_{n+1}=t_n&space;+\Delta&space;t>)  
 
 that's called "Map_time" in the code, since it's defined in the (x,y,t) space.  
@@ -39,9 +39,9 @@ that's called "Map_time" in the code, since it's defined in the (x,y,t) space.
 The stroboscopic method, in the 3 dimensional framework, consist in sampling the trajectories at intervals equal to the period of the perturbation. The stroboscopic map is the projection of such a sampling onto the xy plane, and this process reduces in fact the dimensionality of the problem by one. The period T is different for the two maps, since it must be computed in terms of the time or of the angle. In any case, setting the period as an integer multiple of the integration time interval, i.e. ![equation1](<https://latex.codecogs.com/gif.latex?T=k\Delta&space;t>), the stroboscopic map is just a subset of the complete map, specifically is the subsequence in which we take one point every k.
 
 ## Software usage
-Three directories are present.
-In "Stroboscopic_Map_Script" there is the implementation to be used as a script.
-In "Stroboscopic_Map_Class" the same performance is given in Object Oriented version.
+Three directories are present.  
+In "Stroboscopic_Map_Script" there is the implementation to be used as a script.  
+In "Stroboscopic_Map_Class" the same performance is given in Object Oriented version.  
 In "Figures_of_the_project" the scripts needed to replicate the figures employed in the project, together with a pdf version of the project itself, are given.
 
 Further informations are given inside each subdirectory.
