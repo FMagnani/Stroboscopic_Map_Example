@@ -1,6 +1,9 @@
 # Stroboscopic_Map_Example
 
-## Theoric references
+In this repository the code developed for a university course is stored. The pdf presentation of the project is present as a reference.  
+The code has been used in order to plot dynamical flows, gradient maps, or to compute and plot the stroboscopic map of a simple system (both in 3D and 2D). 
+
+## Stroboscopic Map - brief introduction
 Let's consider the following system:
 
 ![equation1](<https://latex.codecogs.com/gif.latex?\dot{x}=x(a^2&space;-&space;y^2)&plus;x\epsilon&space;\cos{\omega&space;t}>)  
@@ -40,9 +43,9 @@ The stroboscopic method, in the 3 dimensional framework, consist in sampling the
 
 ## Software usage
 Three directories are present.  
-In "Stroboscopic_Map_Script" there is the implementation to be used as a script.  
+In "Stroboscopic_Map_Script" there is the implementation for the stroboscopic map code, to be used as a script.  
 In "Stroboscopic_Map_Class" the same performance is given in Object Oriented version.  
-In "Figures_of_the_project" the scripts needed to replicate the figures employed in the project, together with a pdf version of the project itself, are given.
+In "Figures_of_the_project" there are the scripts used to plot the dynamical flows and the gradient maps shown in the relation.
 
 Further informations are given inside each subdirectory.
 
