@@ -15,28 +15,39 @@ class system:
     def __init__(self, orbits, size, Dt, e, k, seed, 
                stroboscopic, modular, projection, a=1, b=1):
         """
+        Inizialize an instance of this class with the parameters of the
+        system you're studying. 
+        Then employ either the evolution in time with
+        the method "apply_Map_Time" or the evolution in theta with the 
+        method "apply_Map_Theta". In both cases the system is modified, so to
+        try the different evolutions, you should initialize two different
+        copies of the system. 
+        Finally, draw the plot of the orbits simulated either in 2D with the
+        method "plot_2D" or in 3D with the mothod "plot_3D".
         
-
         Parameters
         ----------
-        orbits : TYPE
-            DESCRIPTION.
-        size : TYPE
-            DESCRIPTION.
-        Dt : TYPE
-            DESCRIPTION.
-        e : TYPE
-            DESCRIPTION.
-        k : TYPE
-            DESCRIPTION.
-        seed : TYPE
-            DESCRIPTION.
-        stroboscopic : TYPE
-            DESCRIPTION.
-        modular : TYPE
-            DESCRIPTION.
-        projection : TYPE
-            DESCRIPTION.
+        orbits : int
+            Number of orbits considered. Their position is random, but the
+            the seed can be set.
+        size : int
+            Number of iterations (of the map that evolves the system).
+        Dt : float
+            Time interval for numerical integration.
+        e : float
+            Amplitude of the periodic perturbation.
+        k : int
+            Period, in units 'Dt'.
+        seed : int
+            For random generation of the position of the orbits. Actually, 
+            the initial points are generated, then they are evolved into an
+            orbit by one of the two maps.
+        stroboscopic : bool
+            Display stroboscopic map over the complete orbit?
+        modular : bool
+            Modulate the evolution over the period?
+        projection : bool
+            Display projection of the stroboscopic map onto xy plane of 3D orbits?
 
         Returns
         -------
@@ -57,15 +68,17 @@ class system:
         np.random.seed(seed)
         self.X     = np.empty(shape=(size, orbits), dtype=float)
         self.Y     = np.empty(shape=(size, orbits), dtype=float) 
-        self.Z    = np.empty(shape=(size), dtype=float)
+        self.Z     = np.empty(shape=(size), dtype=float)
         self.X[0]  = np.random.rand(orbits)
         self.Y[0]  = np.random.rand(orbits)
-        self.Z[0] = 0
+        self.Z[0]  = 0
+        
+        self.label_for_3D = ''
         
     
     def apply_Map_Theta(self):
         """
-        
+        Modifies the system parameters applying the map of the (x,y,theta) space.
 
         Returns
         -------
@@ -101,10 +114,13 @@ class system:
         self.Yp = self.Y[ind_p]
         self.Zp = self.Z[ind_p]
 
+        # Set label for the 3D plot
+        self.label_for_3D = '\u03B8'
+
            
     def apply_Map_Time(self):
         """
-        
+        Modifies the system parameters applying the map of the (x,y,t) space.
 
         Returns
         -------
@@ -140,46 +156,29 @@ class system:
         self.Xp = self.X[ind_p]
         self.Yp = self.Y[ind_p]
         self.Zp = self.Z[ind_p]
-
     
-    # def getData(self):
-    #     """
-        
-
-    #     Returns
-    #     -------
-    #     TYPE
-    #         DESCRIPTION.
-    #     TYPE
-    #         DESCRIPTION.
-    #     TYPE
-    #         DESCRIPTION.
-    #     TYPE
-    #         DESCRIPTION.
-    #     TYPE
-    #         DESCRIPTION.
-    #     TYPE
-    #         DESCRIPTION.
-
-    #     """
-        
-    #     return self.X, self.Y, self.Z, self.Xp, self.Yp, self.Zp
+        # Set label for the 3D plot
+        self.label_for_3D = 't'
     
-    
-    def Plot2D(self, ax, xlim, ylim, legend_x, legend_y, font=15):
+    def Plot2D(self, ax, xlim, ylim, legend_x=0, legend_y=0, font=15):
         """
-        
+        Plots the orbits of the system in the plane. The evolution with one of 
+        the two maps should have been already performed. 
 
         Parameters
         ----------
-        ax : TYPE
-            DESCRIPTION.
-        xlim : TYPE
-            DESCRIPTION.
-        ylim : TYPE
-            DESCRIPTION.
-        font : TYPE, optional
-            DESCRIPTION. The default is 15.
+        ax : matplotlib.axes
+            The axis of the figure into which draw the graph.
+        xlim : tuple
+            The span of the x-axis for visualizing the plot.
+        ylim : tuple
+            The span of the x-axis for visualizing the plot.
+        legend_x : float, optional
+            x position of the top-left angle of the legend. Default is 0.
+        legend_y : float, optional
+            y position of the top-left angle of the legend. Default is 0.
+        font : int, optional
+            Font size. Default is 15.
 
         Returns
         -------
@@ -215,6 +214,25 @@ class system:
     
         
     def Plot3D(self, xlim, ylim, font=15):
+        """
+         Plots the orbits of the system in a 3D plot whose third axis is either
+         the time or theta. The evolution with one of the two maps should have 
+         been already performed. 
+
+        Parameters
+        ----------
+        xlim : tuple
+            The span of the x-axis for visualizing the plot.
+        ylim : tuple
+            The span of the x-axis for visualizing the plot.
+        font : int, optional
+            Font size. Default is 15.
+
+        Returns
+        -------
+        None.
+
+        """
         
         # 3D figure initialization
         fig = plt.figure()
@@ -230,7 +248,7 @@ class system:
         # Axis labels
         ax.set_xlabel("x", fontsize=font)
         ax.set_ylabel("y", fontsize=font)
-        ax.set_zlabel("\u03B8", fontsize=font)
+        ax.set_zlabel(self.label_for_3D, fontsize=font)
 
         # Plotting
         ax.plot(self.X, self.Y, self.Z, 'k,', zdir = 'z')
